@@ -660,8 +660,6 @@ class Date
 
 function date($format, $timestamp=0, $decorate=true)
 {
-//return \date('l', time());
-    //return 'Anub';
    $jalali = new Date();
    return $jalali->date($format, $timestamp, $decorate); 
 }
