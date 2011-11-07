@@ -15,27 +15,29 @@ namespace Jalali;
  * Examples:
  * Constructing the class (although this is not relly needed):
  * 1. Constructing a class from php.time():
- * 	$jDate_1 = new \Jalali\Date( ) ;
+ * 	  $jDate_1 = new \Jalali\Date( ) ;
  * 2. Constructing the class from any given time stamp:
- * 	$jDate_2 = new \Jalali\Date( TIME_STAMP ) ;
+ * 	  $jDate_2 = new \Jalali\Date( TIME_STAMP ) ;
  * 3. Constructing the class from (year, month, day, hour, minute, second) values:
- * 	This is the format used by php.mktime() but gets Persian date values
- * 	$jDate_3 = new \Jalali\Date( 1383, 12, 30, 13, 45, 25 ) ;
+ * 	  This is the format used by php.mktime() but gets Persian date values
+ * 	  $jDate_3 = new \Jalali\Date( 1383, 12, 30, 13, 45, 25 ) ;
  *
  * Calling class methods:
  * 1. $jDate->date( FORMAT ) ; //syntax of FORMAT is same as php.date() syntax.
- * 	[see: hhtp://www.php.net/manual/en/function.date.php].
+ * 	  [see: hhtp://www.php.net/manual/en/function.date.php].
  * 2. $jDate->timestamp( ) ; //returns the used (internal) timestamp.
- * 	This is the same value returned from php.time() for the equivalent Julian date.
- * 	(php.date() returns equival Julian date for this time stamp.)
+ * 	  This is the same value returned from php.time() for the equivalent Julian date.
+ * 	  (php.date() returns equival Julian date for this time stamp.)
  *
  * Function call:
- * 1. \Jalali\date( format, [time stamp], [decorate] ) ; //using the format outputs the timestamp -- or the current
- * 	stamp if left blank, in the desired shape. use decorate to show numbers as Arabic numbers --or strings.
+ * 1. \Jalali\date( format, [time stamp], [decorate] ) ; 
+ *    using the format outputs the timestamp -- or the current
+ * 	  stamp if left blank, in the desired shape. 
+ * 	  use decorate to show numbers as Arabic numbers --or strings.
  *
  * In general only the following methods should be called:
- * 	mktime(year, month, day, hour, minute, second) to create time stamp for a given date.
- * 	date(format, [time stamp], [decorate]) to build readable output from time stamp.
+ * mktime(year, month, day, hour, minute, second) to create time stamp for a given date.
+ * date(format, [time stamp], [decorate]) to build readable output from time stamp.
  */
 class Date
 {
@@ -71,7 +73,7 @@ class Date
 	 * @var array
 	 */
 	private $_khayamii = array(
-		0 => 5, 9, 13, 17, 21, 25, 29,
+		5, 9, 13, 17, 21, 25, 29,
 		34, 38, 42, 46, 50, 54, 58, 62,
 		67, 71, 75, 79, 83, 87, 91, 95,
 		100, 104, 108, 112, 116, 120, 124, 0
@@ -84,7 +86,7 @@ class Date
 	 * @var array
 	 */
 	private $_mountCounter = array(
-		0 => 0, 31, 62, 93, 124, 155,
+		0, 31, 62, 93, 124, 155,
 		186, 216, 246, 276, 306, 336
 	);
 
@@ -208,17 +210,19 @@ class Date
 	 * @param integer $minute --Optional
 	 * @param integer $second --Optional
 	 * 
-	 * single parameter is supposed to be a valid timestamp
-	 * multiple --6-- parameters are supposed to be year, month, day, hour, minute, second values.
-	 * 
-	 * @return object
+	 * single parameter is supposed to be a valid timestamp multiple 
+     * --6-- parameters are supposed to be year, month, day, hour, 
+     * minute, second values.
 	 */
 	public function __construct() 
     {
 		if (func_num_args() == 1) {
 			$this->_timestamp = func_get_arg(0);
 		} else if (func_num_args() == 6) {
-			$this->_timestamp = $this->mktime(func_get_arg(0), func_get_arg(1), func_get_arg(2), func_get_arg(3), func_get_arg(4), func_get_arg(5));
+			$this->_timestamp = $this->mktime(
+                func_get_arg(0), func_get_arg(1), func_get_arg(2), 
+                func_get_arg(3), func_get_arg(4), func_get_arg(5)
+            );
 		} else {
 			$this->_timestamp = \time();
 		}
@@ -236,7 +240,7 @@ class Date
 	 * @param string $phrase
 	 * @return string
 	 */
-	public static function ParsiNumbers($phrase) 
+	public function ParsiNumbers($phrase) 
     {
 		$L = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
 		$F = array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹");
@@ -333,9 +337,8 @@ class Date
 				$mod128 +
 				$leapCount
 		;
-		if ($dayOfYear > 0
-
-			)$dayOfYear--;
+		if ($dayOfYear > 0) 
+            $dayOfYear--;
 		return ($yearStartDay + $dayOfYear) % 7;
 	}
 
@@ -351,7 +354,7 @@ class Date
 	private function dayName($dayValue) 
     {
 		$weekAlpha = array(
-			0 => 'شنبه', 'يکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنج شنبه', 'آدينه'
+			'شنبه', 'يکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنج شنبه', 'آدينه'
 		);
 		return $weekAlpha [$dayValue];
 	}
@@ -368,7 +371,7 @@ class Date
 	private function dayShortName($dayValue) 
     {
 		$weekShort = array(
-			0 => 'ش', 'ي', 'د', 'س', 'چ', 'پ', 'آ'
+			'ش', 'ي', 'د', 'س', 'چ', 'پ', 'آ'
 		);
 		return $weekShort [$dayValue];
 	}
@@ -385,7 +388,8 @@ class Date
 	private function monthName($monthValue) 
     {
 		$monthAlpha = array(
-			1 => 'فروردين', 'ارديبهشت', 'خرداد',
+			1 => 'فروردين', 
+            'ارديبهشت', 'خرداد',
 			'تير', 'امرداد', 'شهريور',
 			'مهر', 'آبان', 'آذر',
 			'دي', 'بهمن', 'اسفند'
@@ -453,14 +457,18 @@ class Date
 		$Hours = floor(( $timeStamp % 86400 ) / 3600);
 		$Days = floor($timeStamp / 86400);
 		$Days += 287;
-		$Years = floor(( $Days / self::KHAYAM_YEAR ) - ( $Days * self::KHAYAM_YEAR_CORRECTION ));
+		$Years = floor(
+            ($Days / self::KHAYAM_YEAR) - ($Days * self::KHAYAM_YEAR_CORRECTION)
+        );
 		$dayOfYear = $Days - round($Years * self::KHAYAM_YEAR, 0);
-		if ($dayOfYear == 0)
+		if ($dayOfYear == 0) {
 			$dayOfYear = 366;
+        }
 		$Years += 1348;
 		$Months = 0;
-		while ($Months < 12 && $dayOfYear > $this->_mountCounter [$Months])
-			$Months++;
+		while ($Months < 12 && $dayOfYear > $this->_mountCounter [$Months]) {
+            $Months++;
+        }
 		$Days = $dayOfYear - $this->_mountCounter [$Months - 1];
 
 		$this->_second = $Seconds;
@@ -481,12 +489,11 @@ class Date
 	 * @return void
 	 */
 	private function _zone() {
-		$this->_timeZone = date_default_timezone_get();
-		$timeZoneAbb = \date('T', $this->_timestamp);
-		$this->_timeZoneAbb = \date('T', $this->_timestamp);
-		$this->_DLS = \date('I', $this->_timestamp);
-		$this->_GMTDiff = \date('O', $this->_timestamp);
-		$this->_GMTDiffC = \date('P', $this->_timestamp);
+		$this->_timeZone       = \date_default_timezone_get();
+		$this->_timeZoneAbb    = \date('T', $this->_timestamp);
+		$this->_DLS            = \date('I', $this->_timestamp);
+		$this->_GMTDiff        = \date('O', $this->_timestamp);
+		$this->_GMTDiffC       = \date('P', $this->_timestamp);
 		$this->_timezoneOffset = \date('Z', $this->_timestamp);
 	}
 
@@ -497,69 +504,73 @@ class Date
 	 * with a few exceptions in the acceptable parameters
 	 *
 	 * These are the supported formats from php.date():
-	  //a: Lowercase Ante meridiem and Post meridiem  	am or pm
-	  //A: Uppercase Ante meridiem and Post meridiem 	AM or PM
-	  //d: days from 01 to 31
-	  //D: days --short-- from ش to آ
-	  //j: days from 1 to 31
-	  //l (lowercase 'L'): days from شنبه to آدینه
-	  //N: number of day in week from 1 (شنبه) to 7 (آدینه)
-	  //w: number of day in week
-	  //S: month days from یکم to سی و یکم -- this is slightly different from php.date()!
-	  //z: day in the year
-	  //W: week in the year
-	  //F: Month name from قروردین to اسفند
-	  //m: Month number from 01 to 12
-	  //M: month from فرو to اسف
-	  //n: Month number from 1 to 12
-	  //Y: full year numeric representation -- 4 digit
-	  //y: year numeric representation -- 2 digit
-	  //g: 12-hour format of an hour without leading zeros 	1 through 12
-	  //G: 24-hour format of an hour without leading zeros 	0 through 23
-	  //h: 12-hour format of an hour with leading zeros 	01 through 12
-	  //H: 24-hour format of an hour with leading zeros 	00 through 23
-	  //i: Minutes with leading zeros 	00 to 59
-	  //s: Seconds, with leading zeros 	00 through 59
-	  //T: Timezone abbreviation 	Examples: EST, MDT ...
-	  //U: Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT) 	See also time()
-	  //L: whether it's a leap year
-	  //I: (capital i) Whether or not the date is in daylight saving time 1 if Daylight Saving Time, 0 otherwise.
-	  //O: Difference to Greenwich time (GMT) in hours 	Example: +0200
-	  //P: Difference to Greenwich time (GMT) with colon between hours and minutes (added in PHP 5.1.3)
-	  //Z: Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. 	-43200 through 50400
-	  //c: ISO 8601 date (added in PHP 5) 	2004-02-12T15:19:21+00:00
-	  //r: » RFC 2822 formatted date 	Example: Thu, 21 Dec 2000 16:01:07 +0200
-	  //e: Timezone identifier (added in PHP 5.1.0) 	Examples: UTC, GMT, Atlantic/Azores
+	 * a: Lowercase Ante meridiem and Post meridiem  	am or pm
+	 * A: Uppercase Ante meridiem and Post meridiem 	AM or PM
+	 * d: days from 01 to 31
+	 * D: days --short-- from ش to آ
+	 * j: days from 1 to 31
+	 * l (lowercase 'L'): days from شنبه to آدینه
+	 * N: number of day in week from 1 (شنبه) to 7 (آدینه)
+	 * w: number of day in week
+	 * S: month days from یکم to سی و یکم 
+     *    this is slightly different from php.date()!
+	 * z: day in the year
+	 * W: week in the year
+	 * F: Month name from قروردین to اسفند
+	 * m: Month number from 01 to 12
+	 * M: month from فرو to اسف
+	 * n: Month number from 1 to 12
+	 * Y: full year numeric representation -- 4 digit
+	 * y: year numeric representation -- 2 digit
+	 * g: 12-hour format of an hour without leading zeros 	1 through 12
+	 * G: 24-hour format of an hour without leading zeros 	0 through 23
+	 * h: 12-hour format of an hour with leading zeros 	01 through 12
+	 * H: 24-hour format of an hour with leading zeros 	00 through 23
+	 * i: Minutes with leading zeros 	00 to 59
+	 * s: Seconds, with leading zeros 	00 through 59
+	 * T: Timezone abbreviation 	Examples: EST, MDT ...
+	 * U: Seconds since the Unix Epoch See also time()
+	 * L: whether it's a leap year
+	 * I: (capital i) Whether or not the date is in daylight saving time 1 if 
+     *    Daylight Saving Time, 0 otherwise.
+	 * O: Difference to Greenwich time (GMT) in hours 	Example: +0200
+	 * P: Difference to Greenwich time (GMT) with colon 
+     *    between hours and minutes (added in PHP 5.1.3)
+	 * Z: Timezone offset in seconds. The offset for timezones west of UTC is 
+     *    always negative, and for those east of UTC is always positive. 	
+     *    -43200 through 50400
+	 * c: ISO 8601 date (added in PHP 5) 	2004-02-12T15:19:21+00:00
+	 * r: » RFC 2822 formatted date	Example: Thu, 21 Dec 2000 16:01:07 +0200
+	 * e: Timezone identifier (added in PHP 5.1.0) Examples: GMT, Atlantic/Azores
 	 *
 	 * The following identifiers are not available:
-	  //t: number of days in the given month
-	  //o: year number
-	  //B: Swatch Internet time 	000 through 999
-	  //u: Microseconds (added in PHP 5.2.2) 	Example: 54321	 *
+	 * t: number of days in the given month
+	 * o: year number
+	 * B: Swatch Internet time 	000 through 999
+	 * u: Microseconds (added in PHP 5.2.2) 	Example: 54321
 	 * @param string $format
 	 * @param int $timestamp the unix-type timestamp to be used for output
-	 * @param boolean $decorate if true function decorate is used for chanhing the face of output
-	 * if false the normal face of output is returned. for numbers false returns number, true returns string.
+	 * @param boolean $decorate if true function decorate is used for chanhing 
+     *        the face of output. if false the normal face of output is returned. 
+     *        for numbers false returns number, true returns string.
 	 * @access public
 	 * @return mixed
 	 */
 	public function date($format, $timestamp = 0, $decorate = true) 
     {
-		/*if (func_num_args() == 1) {
-			if ($this->_timestamp > 0) {
-				$timestamp = $this->_timestamp;
-			} else {
-				$timestamp = time();
-			}
-		}*/
-		//$this->_timestamp = $timestamp;
 		$this->_date();
-		$format = str_replace("a", ( $this->_hour <= 12 ? "ق.ظ" : "ب.ظ"), $format);
-		$format = str_replace("A", ( $this->_hour <= 12 ? "ق.ظ" : "ب.ظ"), $format);
+		$format = str_replace("a", ($this->_hour <= 12 ? "ق.ظ" : "ب.ظ"), $format);
+		$format = str_replace("A", ($this->_hour <= 12 ? "ق.ظ" : "ب.ظ"), $format);
 		$format = str_replace("d", str_pad($this->_day, 2, '0', STR_PAD_LEFT), $format);
-		$format = str_replace("D", $this->dayShortName($this->dayOfWeek($this->_year, $this->_dayOfYear)), $format);
+		$format = str_replace(
+                "D", $this->dayShortName(
+                     $this->dayOfWeek($this->_year, $this->_dayOfYear)
+                     ), $format
+                );
 		$format = str_replace("j", $this->_day, $format);
-		$format = str_replace("l", $this->dayName($this->dayOfWeek($this->_year, $this->_dayOfYear)), $format);
+		$format = str_replace("l", $this->dayName(
+                    $this->dayOfWeek($this->_year, $this->_dayOfYear)), $format
+                  );
 		$format = str_replace("N", $this->dayOfWeek($this->_year, $this->_dayOfYear) + 1, $format);
 		$format = str_replace("w", $this->dayOfWeek($this->_year, $this->_dayOfYear), $format);
 		$format = str_replace("S", $this->monthDayString($this->_day), $format);
@@ -592,15 +603,17 @@ class Date
 						str_pad($this->_second, 2, '0', STR_PAD_LEFT) .
 						$this->_GMTDiffC, $format)
 		;
-		$format = str_replace("r", $this->dayShortName($this->dayOfWeek($this->_year, $this->_dayOfYear)) . "، " .
+		$format = str_replace("r", 
+                        $this->dayShortName(
+                            $this->dayOfWeek($this->_year, $this->_dayOfYear)
+                        )."، " .
 						$this->_day . " " .
 						$this->monthShortName($this->_month) . " " .
 						$this->_year . " " .
 						$this->_hour . ":" .
 						$this->_minute . ":" .
 						$this->_second .
-						$this->_GMTDiff, $format)
-		;
+						$this->_GMTDiff, $format);
 		$format = str_replace("T", $this->_timeZoneAbb, $format);
 		$format = str_replace("e", $this->_timeZone, $format);
 
@@ -626,17 +639,19 @@ class Date
 	 * @param mixed $second
 	 * @return integer time stamp
 	 */
-	public function mktime($year, $month, $day, $hour=0, $minute=0, $second=0) {
+	public function mktime($year, $month, $day, $hour=0, $minute=0, $second=0)
+    {
 		$timeStamp = $second;
 		$timeStamp += $minute * 60;
 		$timeStamp += $hour * 60 * 60;
 
 		$dayOfYear = ($day + $this->_mountCounter[$month - 1]);
-		if ($year < 1300)
+		if ($year < 1300) {
 			$year += 1300;
+        }
 		$year -= 1348;
-		$day = $dayOfYear + round(( self::KHAYAM_YEAR * $year), 0);
-		$day -=287;
+		$day   = $dayOfYear + round(( self::KHAYAM_YEAR * $year), 0);
+		$day  -= 287;
 		$timeStamp += $day * 86400;
 		$this->_timestamp = $timeStamp ;
 		$this->_zone();
@@ -660,8 +675,6 @@ class Date
 
 function date($format, $timestamp=0, $decorate=true)
 {
-//return \date('l', time());
-    //return 'Anub';
    $jalali = new Date();
    return $jalali->date($format, $timestamp, $decorate); 
 }
