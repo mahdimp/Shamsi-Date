@@ -1,7 +1,7 @@
 <?php
 namespace Jalali;
 /**
- * JalaliDate
+ * Date
  * Privides an exact scientific approach to create Jalali calendar
  * with an interface similar to php date()
  * 
