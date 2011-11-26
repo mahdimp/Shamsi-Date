@@ -4,12 +4,12 @@ with an interface similar to php date()
 Examples:
 Constructing the class (although this is not relly needed):
 1. Constructing a class from php.time():
-	$jDate_1 = new \Jalali\Date( ) ;
+	$jDate_1 = new \Shamsi\Date( ) ;
 2. Constructing the class from any given time stamp:
-	$jDate_2 = new \Jalali\Date( TIME_STAMP ) ;
+	$jDate_2 = new \Shamsi\Date( TIME_STAMP ) ;
 3. Constructing the class from (year, month, day, hour, minute, second) values:
 	This is the format used by php.mktime() but gets Persian date values
-	$jDate_3 = new \Jalali\Date( 1383, 12, 30, 13, 45, 25 ) ;
+	$jDate_3 = new \Shamsi\Date( 1383, 12, 30, 13, 45, 25 ) ;
 
 Calling class methods:
 1. $jDate->date( FORMAT ) ; //syntax of FORMAT is same as php.date() syntax.
@@ -19,7 +19,7 @@ Calling class methods:
 	(php.date() returns equival Julian date for this time stamp.)
 
 Function call:
-1. \Jalali\date( format, [time stamp], [decorate] ) ; //using the format outputs the timestamp -- or the current
+1. \Shamsi\date( format, [time stamp], [decorate] ) ; //using the format outputs the timestamp -- or the current
 	stamp if left blank, in the desired shape. use decorate to show numbers as Arabic numbers --or strings.
 
 In general only the following methods should be called:

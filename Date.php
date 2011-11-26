@@ -1,5 +1,5 @@
 <?php
-namespace Jalali;
+namespace Shamsi;
 /**
  * Date
  * Privides an exact scientific approach to create Jalali calendar
@@ -28,12 +28,12 @@ namespace Jalali;
  * Examples:
  * Constructing the class (although this is not relly needed):
  * 1. Constructing a class from php.time():
- * 	  $jDate_1 = new \Jalali\Date( ) ;
+ * 	  $jDate_1 = new \Shamsi\Date( ) ;
  * 2. Constructing the class from any given time stamp:
- * 	  $jDate_2 = new \Jalali\Date( TIME_STAMP ) ;
+ * 	  $jDate_2 = new \Shamsi\Date( TIME_STAMP ) ;
  * 3. Constructing the class from (year, month, day, hour, minute, second) values:
  * 	  This is the format used by php.mktime() but gets Persian date values
- * 	  $jDate_3 = new \Jalali\Date( 1383, 12, 30, 13, 45, 25 ) ;
+ * 	  $jDate_3 = new \Shamsi\Date( 1383, 12, 30, 13, 45, 25 ) ;
  *
  * Calling class methods:
  * 1. $jDate->date( FORMAT ) ; //syntax of FORMAT is same as php.date() syntax.
@@ -43,7 +43,7 @@ namespace Jalali;
  * 	  (php.date() returns equival Julian date for this time stamp.)
  *
  * Function call:
- * 1. \Jalali\date( format, [time stamp], [decorate] ) ; 
+ * 1. \Shamsi\date( format, [time stamp], [decorate] ) ; 
  *    using the format outputs the timestamp -- or the current
  * 	  stamp if left blank, in the desired shape. 
  * 	  use decorate to show numbers as Arabic numbers --or strings.
@@ -690,4 +690,10 @@ function date($format, $timestamp=0, $decorate=true)
 {
    $jalali = new Date();
    return $jalali->date($format, $timestamp, $decorate); 
+}
+
+function mktime($year, $month, $day, $hour=0, $minute=0, $second=0)
+{
+   $jalali = new Date();
+   return $jalali->mktime($year, $month, $day, $hour, $minute, $second);
 }
