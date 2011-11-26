@@ -1,5 +1,4 @@
-Provides an exact scientific approach to create Jalali calendar
-with an interface similar to php date()
+This package provides an exact scientific approach to create Jalali(Shamsi) calendar with an interface similar to php date()
 
 Examples:
 Constructing the class
