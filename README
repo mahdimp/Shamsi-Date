@@ -2,7 +2,7 @@ Provides an exact scientific approach to create Jalali calendar
 with an interface similar to php date()
 
 Examples:
-Constructing the class (although this is not relly needed):
+Constructing the class
 1. Constructing a class from php.time():
 	$jDate_1 = new \Shamsi\Date( ) ;
 2. Constructing the class from any given time stamp:
@@ -19,9 +19,9 @@ Calling class methods:
 	(php.date() returns equival Julian date for this time stamp.)
 
 Function call:
-1. \Shamsi\date( format, [time stamp], [decorate] ) ; //using the format outputs the timestamp -- or the current
-	stamp if left blank, in the desired shape. use decorate to show numbers as Arabic numbers --or strings.
+1. \Shamsi\date( format [,int timestamp [,boolean decorate]] ) ; //using the format outputs the timestamp -- or the current
+	timestamp if left blank, in the desired shape. use decorate to show numbers as Arabic numbers --or strings.
 
 In general only the following methods should be called:
 	mktime(year, month, day, hour, minute, second) to create time stamp for a given date.
-	date(format, [time stamp], [decorate]) to build readable output from time stamp.
+	date(format, [,int timestamp [,boolean decorate]]) to build readable output from time stamp.
