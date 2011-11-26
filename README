@@ -3,12 +3,12 @@ This package provides an exact scientific approach to create Jalali(Shamsi) cale
 Examples:
 Constructing the class
 1. Constructing a class from php.time():
-	$jDate_1 = new \Shamsi\Date( ) ;
+	$jDate = new \Shamsi\Date( ) ;
 2. Constructing the class from any given time stamp:
-	$jDate_2 = new \Shamsi\Date( TIME_STAMP ) ;
+	$jDate = new \Shamsi\Date( TIME_STAMP ) ;
 3. Constructing the class from (year, month, day, hour, minute, second) values:
 	This is the format used by php.mktime() but gets Persian date values
-	$jDate_3 = new \Shamsi\Date( 1383, 12, 30, 13, 45, 25 ) ;
+	$jDate = new \Shamsi\Date( 1383, 12, 30, 13, 45, 25 ) ;
 
 Calling class methods:
 1. $jDate->date( FORMAT ) ; //syntax of FORMAT is same as php.date() syntax.
